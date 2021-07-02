@@ -1,0 +1,55 @@
+#nav-buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4.8rem;
+}
+
+#nav-buttons :first-child {
+    margin-right: 2.4rem;
+}
+
+#nav-buttons a {
+    width: 20rem;
+    padding: 1.5em 1em;
+}
+
+a {
+    background-color: hsl(290, 100%, 45%);
+    box-shadow: 4px 4px 0px 0px hsl(290, 100%, 20%);
+    text-align: center;
+    position: relative;
+    border-radius: 0.4rem;
+}
+
+#nav-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+a:link,
+a:focus,
+a:active,
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    background-color: hsl(290, 100%, 35%);
+    box-shadow: 4px 4px 0px 0px hsl(290, 100%, 10%);
+}
+
+a:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 450px) {
+    #nav-buttons {
+        flex-direction: column;
+    }
+    #nav-buttons :first-child {
+        margin-right: 0;
+        margin-bottom: 2.4rem;
+    }
+}
