@@ -1,6 +1,4 @@
 import React from "react";
-import SearchBar from "../components/SearchBar";
-import { useParams } from "react-router-dom";
 
 class CitySearch extends React.Component {
 
@@ -18,7 +16,19 @@ class CitySearch extends React.Component {
     return (
       <section>
         <h2>Search by city</h2>
-        <SearchBar placeholder="Enter a city"  />
+        <section id="search-bar">
+          <input
+            type="text"
+            placeholder="Enter a city"
+            onChange={this.onChangeHandler}
+          ></input>
+          <button onClick={this.search}>
+            <i class="fas fa-search"></i>
+          </button>
+        </section>
+
+        {this.state.hasError && <p id="error-msg">{this.state.errorMsg}</p>}
+     
       </section>
     );
   }

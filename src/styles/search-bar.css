@@ -5,26 +5,25 @@
     margin-top: 4.8rem;
 }
 
-a {
-    width: auto;
-    background-color: hsl(290, 100%, 45%);
-    box-shadow: 4px 4px 0px 0px hsl(290, 100%, 20%);
-    padding: 0.8em;
+button {
+    background-color: hsl(176, 100%, 26%);
+    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 12%);
+    padding: 0.7em;
     border-radius: 0.4rem;
 }
 
-a:link,
-a:focus,
-a:active,
-a {
-    color: white;
-    text-decoration: none;
+button:hover {
+    cursor: pointer;
 }
 
-a:hover,
-a:focus {
-    background-color: hsl(290, 100%, 35%);
-    box-shadow: 4px 4px 0px 0px hsl(290, 100%, 10%);
+button:hover,
+button:focus {
+    background-color: hsl(176, 100%, 20%);
+    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 6%);
+}
+
+button:focus {
+    outline: none;
 }
 
 input {
@@ -32,6 +31,11 @@ input {
     border-radius: 0.4rem;
     border: none;
     margin-right: 0.8rem;
+    height: calc(auto + 6px)
+}
+
+input:focus {
+    outline-color: hsl(176, 100%, 12%);
 }
 
 ::-webkit-input-placeholder {
