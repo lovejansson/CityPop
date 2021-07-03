@@ -21,7 +21,7 @@ class App extends React.Component {
 
             <Route exact path="/countries" component={CountrySearch} />
 
-            <Route exact path="/cities/:name" component={City} />
+            <Route exact path="/cities/:city" component={City} />
 
             <Route exact path="/countries/:country" component={Country} />
 

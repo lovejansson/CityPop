@@ -8,10 +8,10 @@ class Country extends React.Component {
     this.countryName = this.capitalize(this.props.match.params.country);
     this.state = {  cities: [], loading: false };
     this.fetchCities = this.fetchCities.bind(this);
+    this.navigateToCity = this.navigateToCity.bind(this);
   }
 
   componentDidMount() {
-    
     this.fetchCities();
   }
 
@@ -62,20 +62,25 @@ class Country extends React.Component {
     }
   }
 
+  navigateToCity(city){
+    this.props.history.push(`/cities/${city}`);
+  }
+
   render() {
     return (
       <section>
         <h2>{this.countryName}</h2>
-        <ul>
+
+        {this.state.loading ? <Loading/> : <ul>
           {this.state.cities.map((city) => {
             return (
-              <li class="blur-card" onClick={() => {}}>
+              <li class="blur-card" onClick={() => {this.navigateToCity(city.name)}}>
                 {city.name}
               </li>
             );
           })}
-        </ul>
-        <Loading loading={this.state.loading} />
+        </ul>}
+     
       </section>
     );
   }

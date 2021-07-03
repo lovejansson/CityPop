@@ -1,41 +1,66 @@
 import React from "react";
-import { } from "react-router-dom";
+import Loading from "../components/Loading";
 
 
 class City extends React.Component {
-    constructor(props){
+  constructor(props) {
+    super(props);
 
-        super(props);
-        console.dir(this.props)
+    this.state = {loading: false, population: "", cityName: this.props.match.params.city};
+  }
 
-        if(this.props.location.state.population){
-            this.state = {population: this.props.location.state.population, loading: false};
-        }else{
-            this.state = {population: null, loading: true}
-        }
+  componentDidMount() {
+  
+    this.fetchPopulation();
+  }
 
-     
+  async fetchPopulation() {
+    this.setState({
+      loading: true,
+    });
 
+    try {
+      var response = await fetch(
+        `http://api.geonames.org/searchJSON?username=weknowit&orderby=population&maxRows=1&featureClass=P&name_equals=${this.state.cityName}`
+      );
+    } catch (error) {
+      console.log(error);
+      return;
     }
-  search() {
-    console.log("searching...");
+
+    if (response.status === 200) {
+      const data = await response.json();
+
+      if(data.geonames.length === 0){
+        this.props.history.push(`/${this.state.cityName}`);
+      }else{
+        this.setState({
+          population: data.geonames[0].population,
+          loading: false,
+          cityName: data.geonames[0].name,
+        });
+      }
+
+    } else {
+      this.props.history.push(`/${this.state.cityName}`);
+    }
+
   }
 
-  componentDidMount(){
-     console.dir(this)
-      console.log("city mounting");
-
-
-  }
 
   render() {
     return (
       <section>
-        <h2>{this.props.match.params.name}</h2>
-        <div class="blur-card">
-        <h3>Population</h3>
-        <p>{this.state.population}</p>
-        </div>
+        <h2>{this.state.cityName}</h2>
+
+        {this.state.loading ? (
+          <Loading />
+        ) : (
+          <div class="blur-card">
+            <h3>Population</h3>
+            <p>{this.state.population}</p>
+          </div>
+        )}
       </section>
     );
   }

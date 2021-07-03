@@ -4,12 +4,32 @@ class CitySearch extends React.Component {
 
     constructor(props){
         super(props);
-        console.log("constructor city search")
-        
-       
+        console.log("constructor city search");
+        this.state = { errorMsg: "", hasError: false };
+        this.search = this.search.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
+        this.searchText = "";
+      
     }
   search() {
-    console.log("searching...");
+    if (this.searchText === "") {
+      this.setState({
+        errorMsg: "Please enter a search text",
+        hasError: true,
+      });
+      
+    }else{
+      this.props.history.push(`/cities/${this.searchText}`);
+    }
+  }
+
+  
+  onChangeHandler(event) {
+    this.setState({
+      errorMsg: "",
+      hasError: false,
+    });
+    this.searchText = event.target.value;
   }
 
   render() {
