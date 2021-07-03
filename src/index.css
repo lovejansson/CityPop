@@ -8,6 +8,13 @@
     src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 }
 
+
+/******************
+
+    ELEMENTS
+
+*******************/
+
 * {
     margin: 0;
     padding: 0;
@@ -33,14 +40,8 @@ body {
     font-size: 1.8rem;
     color: white;
     font-family: "Lato";
-    background-image: url("./images/people.jpg");
+    background-image: url("./images/city.jpg");
     background-size: cover;
-}
-
-#root {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
 }
 
 main {
@@ -55,7 +56,6 @@ main {
 section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -63,34 +63,119 @@ h1 {
     font-size: 6.4rem;
     margin-bottom: 1.6rem;
     font-family: "Abril Fatface";
-    text-shadow: black 2px 2px 3px;
+    text-shadow: hsl(176, 100%, 3%) 1px 1px 4px;
 }
 
 h2 {
     font-size: 2.4rem;
     font-weight: 400;
     text-transform: uppercase;
+    margin-bottom: 4.8rem;
 }
 
 h3 {
     margin-bottom: 1rem;
-}
-
-#error-msg {
-    background-color: rgb(248, 7, 87);
-    font-size: 1.6rem;
-    padding: 0.5em;
-    border-radius: 0.4rem;
-    margin-top: 0.5rem;
+    font-size: 1.8rem;
 }
 
 ul {
     list-style: none;
-    margin-top: 1.4rem;
 }
 
 li {
     font-weight: bold;
+}
+
+li:not(:first-child) {
+    margin-top: 1em;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    background-color: hsl(176, 100%, 24%);
+    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 12%);
+    text-align: center;
+    position: relative;
+    border-radius: 0.4rem;
+}
+
+a:link,
+a:focus,
+a:active,
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    background-color: hsl(176, 100%, 20%);
+    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 8%);
+}
+
+a:focus {
+    outline: none;
+}
+
+
+/******************
+
+    classes/ids
+
+*******************/
+
+#root {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#population {
+    font-size: 4.8rem;
+}
+
+#tagline {
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+#nav-links {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4.8rem;
+}
+
+#nav-links :first-child {
+    margin-right: 2.4rem;
+}
+
+#nav-links a {
+    width: 20rem;
+    padding: 1.5em 1em;
+}
+
+.error-msg {
+    background-color: rgb(248, 7, 87);
+    font-size: 1.6rem;
+    padding: 0.5em;
+    border-radius: 0.4rem;
+    margin-top: 0.8rem;
+    width: 100%;
+    text-align: center;
+    animation: fade-in 0.4s;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .blur-card {
@@ -100,5 +185,35 @@ li {
     padding: 1em 0;
     text-align: center;
     border-radius: 0.4rem;
-    margin-top: 1em;
+    box-shadow: none;
+}
+
+.blur-card:focus {
+    outline-color: hsl(176, 100%, 8%);
+}
+
+.notification {
+    position: fixed;
+    top: 1.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(248, 7, 87);
+    padding: 0.5em;
+    border-radius: 0.4rem;
+}
+
+@media screen and (max-width: 450px) {
+    #nav-links {
+        flex-direction: column;
+    }
+    #nav-links :first-child {
+        margin-right: 0;
+        margin-bottom: 2.4rem;
+    }
+    #tagline {
+        max-width: 28rem;
+        word-wrap: break-word;
+        text-align: center;
+        font-size: 1.6rem;
+    }
 }

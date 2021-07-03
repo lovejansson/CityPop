@@ -1,45 +1,30 @@
 import React from "react";
 import Loading from "../components/Loading.jsx";
 import iso from "country-code-lookup";
+import { capitalize } from "../utils/helperMethods";
 
 class Country extends React.Component {
   constructor(props) {
     super(props);
-    this.countryName = this.capitalize(this.props.match.params.country);
-    this.state = {  cities: [], loading: false };
+    this.countryName = capitalize(this.props.match.params.country);
+    this.state = { cities: [], loading: false, notification: null };
     this.fetchCities = this.fetchCities.bind(this);
     this.navigateToCity = this.navigateToCity.bind(this);
   }
 
   componentDidMount() {
-    this.fetchCities();
-  }
-
-  capitalize(text) {
-    const textArray = text.split(" ");
-    let lettersArray;
-    for (let i = 0; i < textArray.length; ++i) {
-      lettersArray = textArray[i].split("");
-      if (lettersArray[0]) {
-        lettersArray[0] = lettersArray[0].toUpperCase();
-      }
-
-      textArray[i] = lettersArray.join("");
-    }
-
-    return textArray.join(" ");
-  }
-
-  async fetchCities() {
-   
     this.setState({
       loading: true,
     });
+    this.fetchCities();
+  }
 
+  async fetchCities() {
     const country = iso.byCountry(this.countryName);
 
-    if(!country){
-      this.props.history.push("/404");
+    if (!country) {
+      // will show 404 page
+      this.props.history.replace(`/${this.countryName}`);
     }
 
     try {
@@ -47,40 +32,61 @@ class Country extends React.Component {
         `http://api.geonames.org/searchJSON?username=weknowit&orderby=population&maxRows=3&featureClass=P&country=${country.iso2}`
       );
     } catch (error) {
-      console.log(error);
+      this.setState({
+        notification:
+          "Unknown error occured, please check your internet connection.",
+        loading: false,
+      });
+      setTimeout(() => {
+        this.setState({ notification: null });
+      }, 5000);
       return;
     }
 
     if (response.status === 200) {
       const data = await response.json();
+
       this.setState({
         cities: data.geonames,
         loading: false,
       });
     } else {
-      this.props.history.push(`/${this.countryName}`);
+      // will show 404 page
+      this.props.history.replace(`/${this.countryName}`);
     }
   }
 
-  navigateToCity(city){
+  navigateToCity(city) {
     this.props.history.push(`/cities/${city}`);
   }
 
   render() {
     return (
       <section>
+        {this.state.notification && (
+          <p class="notification">{this.state.notification}</p>
+        )}
         <h2>{this.countryName}</h2>
-
-        {this.state.loading ? <Loading/> : <ul>
-          {this.state.cities.map((city) => {
-            return (
-              <li class="blur-card" onClick={() => {this.navigateToCity(city.name)}}>
-                {city.name}
-              </li>
-            );
-          })}
-        </ul>}
-     
+        {this.state.loading ? (
+          <Loading />
+        ) : (
+          <ul>
+            {this.state.cities.map((city) => {
+              return (
+                <li>
+                  <button
+                    class="blur-card"
+                    onClick={() => {
+                      this.navigateToCity(city.name);
+                    }}
+                  >
+                    {city.name}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </section>
     );
   }

@@ -1,8 +1,6 @@
 .loader {
-    border: 0.5rem solid hsl(176, 100%, 96%);
-    /* Light grey */
-    border-top: 0.5rem solid hsl(176, 100%, 26%);
-    /* Blue */
+    border: 0.5rem solid #fff;
+    border-top: 0.5rem solid hsl(176, 100%, 12%);
     border-radius: 50%;
     width: 3.2rem;
     height: 3.2rem;

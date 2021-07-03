@@ -1,29 +1,7 @@
-#search-bar {
+.search-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 4.8rem;
-}
-
-button {
-    background-color: hsl(176, 100%, 26%);
-    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 12%);
-    padding: 0.7em;
-    border-radius: 0.4rem;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-button:hover,
-button:focus {
-    background-color: hsl(176, 100%, 20%);
-    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 6%);
-}
-
-button:focus {
-    outline: none;
 }
 
 input {
@@ -31,11 +9,27 @@ input {
     border-radius: 0.4rem;
     border: none;
     margin-right: 0.8rem;
-    height: calc(auto + 6px)
 }
 
 input:focus {
     outline-color: hsl(176, 100%, 12%);
+}
+
+.search-button {
+    background-color: hsl(176, 100%, 24%);
+    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 12%);
+    padding: 0.6em;
+    border-radius: 0.4rem;
+}
+
+.search-button:hover,
+.search-button:focus {
+    background-color: hsl(176, 100%, 20%);
+    box-shadow: 4px 4px 0px 0px hsl(176, 100%, 8%);
+}
+
+.search-button:focus {
+    outline: none;
 }
 
 ::-webkit-input-placeholder {
