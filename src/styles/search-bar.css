@@ -22,14 +22,13 @@ input:focus {
     border-radius: 0.4rem;
 }
 
-.search-button:hover,
-.search-button:focus {
+.search-button:hover {
     background-color: hsl(176, 100%, 20%);
     box-shadow: 4px 4px 0px 0px hsl(176, 100%, 8%);
 }
 
 .search-button:focus {
-    outline: none;
+    outline-color: hsl(176, 100%, 8%);
 }
 
 ::-webkit-input-placeholder {

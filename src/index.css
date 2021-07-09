@@ -171,6 +171,15 @@ a:focus {
     margin-bottom: 2.4rem;
 }
 
+.button-back:hover,
+.button-back:focus {
+    color: hsl(0, 0%, 85%)
+}
+
+.button-back:focus {
+    outline-color: hsl(176, 100%, 8%);
+}
+
 .blur-card {
     background-color: hsla(176, 100%, 100%, 0.25);
     backdrop-filter: blur(6px);
