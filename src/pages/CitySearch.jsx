@@ -7,7 +7,13 @@ class CitySearch extends React.Component {
     this.search = this.search.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.searchText = "";
+    this.navigateBack = this.navigateBack.bind(this);
   }
+
+  navigateBack() {
+    this.props.history.goBack();
+  }
+
   search() {
     if (this.searchText === "") {
       this.setState({
@@ -30,19 +36,24 @@ class CitySearch extends React.Component {
   render() {
     return (
       <section>
+        <button className="button-back" onClick={this.navigateBack}>
+          <i className="fas fa-arrow-left"></i> Tillbaka
+        </button>
         <h2>Search by city</h2>
-        <section class="search-bar">
+        <section className="search-bar">
           <input
             type="text"
             placeholder="Enter a city"
             onChange={this.onChangeHandler}
           ></input>
-          <button class="search-button" onClick={this.search}>
-            <i class="fas fa-search"></i>
+          <button className="search-button" onClick={this.search}>
+            <i className="fas fa-search"></i>
           </button>
         </section>
 
-        {this.state.hasError && <p class="error-msg">{this.state.errorMsg}</p>}
+        {this.state.hasError && (
+          <p className="error-msg">{this.state.errorMsg}</p>
+        )}
       </section>
     );
   }

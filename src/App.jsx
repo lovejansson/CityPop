@@ -13,6 +13,7 @@ class App extends React.Component {
     return (
       <main>
         <h1>CityPop</h1>
+
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -25,9 +26,7 @@ class App extends React.Component {
 
             <Route exact path="/countries/:country" component={Country} />
 
-            <Route path="/*">
-              <NotFound />
-            </Route>
+            <Route path="/*" component={NotFound} />
           </Switch>
         </Router>
       </main>

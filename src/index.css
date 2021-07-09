@@ -1,14 +1,3 @@
-@font-face {
-    font-family: "Abril Fatface";
-    src: url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-}
-
-
 /******************
 
     ELEMENTS
@@ -98,7 +87,6 @@ a {
     background-color: hsl(176, 100%, 24%);
     box-shadow: 4px 4px 0px 0px hsl(176, 100%, 12%);
     text-align: center;
-    position: relative;
     border-radius: 0.4rem;
 }
 
@@ -176,6 +164,11 @@ a:focus {
     to {
         opacity: 1;
     }
+}
+
+.button-back {
+    align-self: center;
+    margin-bottom: 2.4rem;
 }
 
 .blur-card {

@@ -11,6 +11,12 @@ class City extends React.Component {
       cityName: this.props.match.params.city,
       notification: null,
     };
+
+    this.navigateBack = this.navigateBack.bind(this);
+  }
+
+  navigateBack() {
+    this.props.history.goBack();
   }
 
   formatPopulation(population) {
@@ -44,9 +50,8 @@ class City extends React.Component {
     if (response.status === 200) {
       const data = await response.json();
 
-      if (data.geonames.length === 0) {
+      if (!data.geonames || data.geonames.length === 0) {
         // will show 404 page
-
         this.props.history.replace(`/${this.state.cityName}`);
       } else if (
         data.geonames[0].name.toLowerCase() !==
@@ -77,14 +82,17 @@ class City extends React.Component {
     return (
       <section>
         {this.state.notification && (
-          <p class="notification">{this.state.notification}</p>
+          <p className="notification">{this.state.notification}</p>
         )}
+        <button className="button-back" onClick={this.navigateBack}>
+          <i className="fas fa-arrow-left"></i> Tillbaka
+        </button>
         <h2>{this.state.cityName}</h2>
 
         {this.state.loading ? (
           <Loading />
         ) : (
-          <div class="blur-card">
+          <div className="blur-card">
             <h3>Population</h3>
             <p id="population">{this.state.population}</p>
           </div>

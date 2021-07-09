@@ -10,6 +10,7 @@ class Country extends React.Component {
     this.state = { cities: [], loading: false, notification: null };
     this.fetchCities = this.fetchCities.bind(this);
     this.navigateToCity = this.navigateToCity.bind(this);
+    this.navigateBack = this.navigateBack.bind(this);
   }
 
   componentDidMount() {
@@ -17,6 +18,10 @@ class Country extends React.Component {
       loading: true,
     });
     this.fetchCities();
+  }
+
+  navigateBack() {
+    this.props.history.goBack();
   }
 
   async fetchCities() {
@@ -64,18 +69,22 @@ class Country extends React.Component {
     return (
       <section>
         {this.state.notification && (
-          <p class="notification">{this.state.notification}</p>
+          <p className="notification">{this.state.notification}</p>
         )}
+        <button className="button-back" onClick={this.navigateBack}>
+          <i className="fas fa-arrow-left"></i> Tillbaka
+        </button>
         <h2>{this.countryName}</h2>
+
         {this.state.loading ? (
           <Loading />
         ) : (
           <ul>
             {this.state.cities.map((city) => {
               return (
-                <li>
+                <li key={city.name}>
                   <button
-                    class="blur-card"
+                    className="blur-card"
                     onClick={() => {
                       this.navigateToCity(city.name);
                     }}
